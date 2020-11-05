@@ -33,7 +33,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: isbang/compose-action@v0.1.1
+      - name: run-my-docker-compose
+        uses: isbang/compose-action@v0.1.1 
+        with: 
+         compose-file: ./docker-compose.yaml
 
 
 
