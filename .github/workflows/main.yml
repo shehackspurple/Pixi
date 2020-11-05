@@ -25,5 +25,33 @@ jobs:
         run: |
           docker-compose up
 
+#timer to kill the docker container after 30 minutes
+
+      - name: Stop the image
+        id: kill-image
+        run: |
+          docker-compose down
+
+
+
+#tests go here
+    tests:
+      name: tests
+      runs-on: ubuntu-latest
+  
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      #tests-go-here
+      #SCA    
+      - name: Snyk
+        uses: snyk/actions/dotnet@master
+        env:
+           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+         
+
+
 
 
