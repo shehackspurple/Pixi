@@ -36,7 +36,7 @@ jobs:
       - name: run-my-docker-compose
         uses: isbang/compose-action@v0.1.1 
         with: 
-         compose-file: ./docker-compose.yaml
+         compose-file: docker-compose.yaml
 
 
 
