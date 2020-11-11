@@ -20,13 +20,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
   
+    #startup PIXI using the docker-compose up command
       - name: Build the image
         id: build-image
         run: |
-          docker-compose up
-
-#timer to kill the docker container after 30 minutes
-
+          docker-compose up & sleep 6000 
+          echo 'this worked'
+  #sleep 10 minutes to let PIXI start and update herself
+  
+#kill the docker container after tests are complete
       - name: Stop the image
         id: kill-image
         run: |
