@@ -24,7 +24,7 @@ jobs:
       - name: Build the image
         id: build-image
         run: |
-          echo "Building docker image..."'
+          echo "Building docker image..."
           docker-compose up > /dev/null 2>&1 
           echo "Image built... sleeping"
           sleep 30
