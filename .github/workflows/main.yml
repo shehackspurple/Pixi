@@ -24,8 +24,11 @@ jobs:
       - name: Build the image
         id: build-image
         run: |
+          printf "starting 10 minute timer printf"
+          echo 'starting 10 minute timer'
           docker-compose up & sleep 6000 
-          echo 'this worked'
+          echo 'this worked - timer done'
+          printf "this worked - timer done printf"
   #sleep 10 minutes to let PIXI start and update herself
   
       - name: OWASP ZAP Baseline Scan
