@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Super-testing-galore
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -10,7 +10,7 @@ on:
   pull_request:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# We have many jobs
 jobs:
     deploy:
       name: Deploy
@@ -18,7 +18,7 @@ jobs:
   
       steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
   
     #startup PIXI using the docker-compose up command
       - name: Build the image
@@ -28,7 +28,14 @@ jobs:
           echo 'this worked'
   #sleep 10 minutes to let PIXI start and update herself
   
-#kill the docker container after tests are complete
+      - name: OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.4.0
+        with:
+          target: 'http://localhost:8000'
+  
+  
+  
+#kill the PIXI docker container after tests are complete
       - name: Stop the image
         id: kill-image
         run: |
@@ -36,21 +43,20 @@ jobs:
 
 
 
-#tests go here
-    tests:
-      name: tests
-      runs-on: ubuntu-latest
+    #tests:
+      #name: tests
+      #runs-on: ubuntu-latest
   
-      steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      #steps:
+      #- name: Checkout
+      #  uses: actions/checkout@v1
 
       #tests-go-here
       #SCA    
-      - name: Snyk
-        uses: snyk/actions/dotnet@master
-        env:
-           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      #- name: Snyk
+      #  uses: snyk/actions/dotnet@master
+      #  env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
          
 
