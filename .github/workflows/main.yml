@@ -23,8 +23,12 @@ jobs:
     #startup PIXI using the docker-compose up command
       - name: Build the image
         id: build-image
-        run: docker-compose up
+        run: docker-compose up -d
   
+      - name: Sleep to allow containers to mellow
+        id: sleep-mellow
+        run: sleep 30
+
       - name: OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.4.0
         with:
