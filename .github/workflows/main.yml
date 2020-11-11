@@ -13,7 +13,7 @@ on:
 # We have many jobs
 jobs:
     deploy:
-      name: Deploy
+      name: Deploy and test Pixi
       runs-on: ubuntu-latest
   
       steps:
@@ -21,8 +21,8 @@ jobs:
         uses: actions/checkout@v2
   
     #startup PIXI using the docker-compose up command
-      - name: Build the image
-        id: build-image
+      - name: Start the containers
+        id: start-containers
         run: docker-compose up -d
   
       - name: Sleep to allow containers to mellow
@@ -34,4 +34,8 @@ jobs:
         with:
           target: 'http://localhost:8000'
   
- 
+     #stop PIXI using docker-compose down
+      - name: Stop the containers
+        id: stop-containers
+        run: docker-compose down
+
