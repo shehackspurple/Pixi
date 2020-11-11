@@ -23,12 +23,7 @@ jobs:
     #startup PIXI using the docker-compose up command
       - name: Build the image
         id: build-image
-        run: |
-          echo "Building docker image..."
-          docker-compose up > /dev/null 2>&1 
-          echo "Image built... sleeping"
-          sleep 30
-          echo "I'm awake!"
+        run: docker-compose up
   
       - name: OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.4.0
