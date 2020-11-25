@@ -13,7 +13,7 @@ on:
 # We have many jobs
 jobs:
     deploy:
-      name: Deploy
+      name: Deploy and test Pixi
       runs-on: ubuntu-latest
   
       steps:
@@ -21,48 +21,21 @@ jobs:
         uses: actions/checkout@v2
   
     #startup PIXI using the docker-compose up command
-      - name: Build the image
-        id: build-image
-        run: |
-          printf "starting 10 minute timer printf"
-          echo 'starting 10 minute timer'
-          docker-compose up & sleep 6000 
-          echo 'this worked - timer done'
-          printf "this worked - timer done printf"
-  #sleep 10 minutes to let PIXI start and update herself
+      - name: Start the containers
+        id: start-containers
+        run: docker-compose up -d
   
+      - name: Sleep to allow containers to mellow
+        id: sleep-mellow
+        run: sleep 30
+
       - name: OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.4.0
         with:
           target: 'http://localhost:8000'
   
-  
-  
-#kill the PIXI docker container after tests are complete
-      - name: Stop the image
-        id: kill-image
-        run: |
-          docker-compose down
-
-
-
-    #tests:
-      #name: tests
-      #runs-on: ubuntu-latest
-  
-      #steps:
-      #- name: Checkout
-      #  uses: actions/checkout@v1
-
-      #tests-go-here
-      #SCA    
-      #- name: Snyk
-      #  uses: snyk/actions/dotnet@master
-      #  env:
-      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-         
-
-
-
+     #stop PIXI using docker-compose down
+      - name: Stop the containers
+        id: stop-containers
+        run: docker-compose down
 
