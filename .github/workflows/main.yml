@@ -33,6 +33,8 @@ jobs:
         uses: zaproxy/action-baseline@v0.4.0
         with:
           target: 'http://localhost:8000'
+          fail_action: 'false'
+          token: ${{ secrets.GITHUB_TOKEN }}
   
      #stop PIXI using docker-compose down
       - name: Stop the containers
