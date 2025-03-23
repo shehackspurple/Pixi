@@ -1,47 +1,47 @@
 # # This is a basic workflow to help you get started with Actions
 
-# name: Super-testing-galore
+# # name: Super-testing-galore
 
 # # Controls when the action will run. Triggers the workflow on push or pull request
 # # events but only for the master branch
-# on:
-#   push:
-#     branches: [ master ]
-#   pull_request:
-#     branches: [ master ]
+# # on:
+# #   push:
+# #     branches: [ master ]
+# #   pull_request:
+# #     branches: [ master ]
 
 # # We have many jobs
-# jobs:
-#     deploy:
-#       name: Deploy and test Pixi
-#       runs-on: ubuntu-latest
+# # jobs:
+# #     deploy:
+# #       name: Deploy and test Pixi
+# #       runs-on: ubuntu-latest
   
-#       steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
+# #       steps:
+# #       - name: Checkout
+# #         uses: actions/checkout@v2
   
-#     #startup PIXI using the docker-compose up command
-#       - name: Start the containers
-#         id: start-containers
-#         run: docker-compose up -d
+# #     #startup PIXI using the docker-compose up command
+# #       - name: Start the containers
+# #         id: start-containers
+# #         run: docker-compose up -d
   
-#       - name: Sleep to allow containers to mellow
-#         id: sleep-mellow
-#         run: sleep 30
+# #       - name: Sleep to allow containers to mellow
+# #         id: sleep-mellow
+# #         run: sleep 30
 
-#       #- name: OWASP ZAP Baseline Scan
-#       #  uses: zaproxy/action-baseline@v0.4.0
-#       #  with:
-#       #    target: 'http://localhost:8000'
-#       #    fail_action: 'false'
-#       #    token: ${{ secrets.GITHUB_TOKEN }}
+# #       #- name: OWASP ZAP Baseline Scan
+# #       #  uses: zaproxy/action-baseline@v0.4.0
+# #       #  with:
+# #       #    target: 'http://localhost:8000'
+# #       #    fail_action: 'false'
+# #      #    token: ${{ secrets.GITHUB_TOKEN }}
 
-#       - name: OWASP ZAP FULL Scan
-#         uses: zaproxy/action-full-scan@v0.2.0
-#         with:
-#           target: 'http://localhost:8000'
-#           fail_action: 'false'
-#           token: ${{ secrets.GITHUB_TOKEN }}
+# #       - name: OWASP ZAP FULL Scan
+# #         uses: zaproxy/action-full-scan@v0.2.0
+# #        with:
+# #           target: 'http://localhost:8000'
+# #           fail_action: 'false'
+# #           token: ${{ secrets.GITHUB_TOKEN }}
 
 
 #      #stop PIXI using docker-compose down
